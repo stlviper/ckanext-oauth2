@@ -118,8 +118,8 @@ class OAuth2Plugin(plugins.SingletonPlugin):
             m.redirect('/user/reset', self.reset_url)
 
         # Redirect the user to the OAuth service reset page
-        if self.edit_url:
-            m.redirect('/user/edit/{user}', self.edit_url)
+#        if self.edit_url:
+#            m.redirect('/user/edit/{user}', self.edit_url)
 
         return m
 
@@ -168,7 +168,7 @@ class OAuth2Plugin(plugins.SingletonPlugin):
         # we need to prevent some actions being authorized.
         return {
             'user_create': user_create,
-            'user_update': user_update,
+#            'user_update': user_update,
             'user_reset': user_reset,
             'request_reset': request_reset
         }
