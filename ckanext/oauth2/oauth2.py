@@ -61,7 +61,7 @@ class OAuth2Helper(object):
         if self.verify_https and os.environ.get("REQUESTS_CA_BUNDLE", "").strip() != "":
             self.verify_https = os.environ["REQUESTS_CA_BUNDLE"].strip()
 
-        log.debug(os.environ["REQUESTS_CA_BUNDLE"])
+        log.debug(os.environ.get("REQUESTS_CA_BUNDLE"))
 
         self.legacy_idm = six.text_type(os.environ.get('CKAN_OAUTH2_LEGACY_IDM', toolkit.config.get('ckan.oauth2.legacy_idm', ''))).strip().lower() in ("true", "1", "on")
         self.authorization_endpoint = six.text_type(os.environ.get('CKAN_OAUTH2_AUTHORIZATION_ENDPOINT', toolkit.config.get('ckan.oauth2.authorization_endpoint', ''))).strip()
@@ -98,7 +98,7 @@ class OAuth2Helper(object):
         return toolkit.redirect_to(auth_url.encode('utf-8'))
 
     def get_token(self):
-        log.debug(os.environ["REQUESTS_CA_BUNDLE"])
+        log.debug(os.environ.get("REQUESTS_CA_BUNDLE"))
         oauth = OAuth2Session(self.client_id, redirect_uri=self.redirect_uri, scope=self.scope)
 
         # Just because of FIWARE Authentication
